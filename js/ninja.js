@@ -1,9 +1,24 @@
-const bookList = document.querySelector('#book-list');
+const list = document.querySelector('#book-list ul');
 
-console.log('book-list next sibling is:',bookList.nextSibling);
-console.log('book-list next element sibling is:',bookList.nextElementSibling);
+// delete books
+list.addEventListener('click', (e) => {
+  if(e.target.className == 'delete'){
+    const li = e.target.parentElement;
+    li.parentNode.removeChild(li);
+  }
+});
 
-console.log('book-list previous sibling is:',bookList.previousSibling);
-console.log('book-list previous element sibling is:',bookList.previousElementSibling);
+const forms = document.forms;
+console.log(forms);
+console.log(forms['add-book']);
 
-bookList.previousElementSibling.querySelector('p').innerHTML += '<br/>Too cool for everyone else!'
+Array.from(forms).forEach(function(form){
+  console.log(form);
+});
+
+const addForm = forms['add-book'];
+addForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  const value = addForm.querySelector('input[type="text"]').value;
+  console.log(value);
+});
